@@ -5,8 +5,6 @@ import sys
 import melee
 import random
 
-# This example program demonstrates how to use the Melee API to run a console,
-#   setup controllers, and send button presses over to a console
 # This is the example.py file from the libmelee repo
 
 def check_port(value):
@@ -123,7 +121,8 @@ while True:
             # NOTE: This is where your AI does all of its stuff!
             # This line will get hit once per frame, so here is where you read
             #   in the gamestate and decide what buttons to push on the controller
-            melee.techskill.multishine(ai_state=gamestate.players[discovered_port], controller=controller)
+            if gamestate.distance < 4: 
+                controller.press_button(melee.enums.Button.BUTTOn_B)
         else:
             # If the discovered port was unsure, reroll our costume for next time
             costume = random.randint(0, 4)
